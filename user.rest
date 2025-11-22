@@ -1,0 +1,153 @@
+### Create user: corpsLeader (Kagaya Ubuyashiki)
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+  "username": "corpsLeader",
+  "password": "admin123",
+  "role": "admin",
+  "profile": [
+    {
+      "name": "Kagaya Ubuyashiki",
+      "rank": "Corps Leader",
+      "experience": 1000000,
+      "breathingStyle": "None",
+      "killCount": 0,
+      "missionsCompleted": 0,
+      "status": "Active"
+    }
+  ]
+}
+
+### Create guest user
+POST http://localhost:3000/users/register
+Content-Type: application/json
+{
+  "username": "guest",
+  "password": "guest123",
+  "role": "guest",
+  "profile": [
+    {
+      "name": "Guest User",
+      "experience": 0,
+      "breathingStyle": "None",
+      "killCount": 0,
+      "missionsCompleted": 0,
+      "status": "Active"
+    }
+  ]
+}
+
+### Create user: himejima (Gyomei Himejima)
+POST http://localhost:10000/users/register
+Content-Type: application/json
+
+{
+  "username": "rengoku",
+  "password": "hashira123",
+  "profile": [
+    {
+      "name": "Kyojuro Rengoku",
+      "rank": "Hashira - Elite",
+      "experience": 750000,
+      "breathingStyle": "Flame Breathing",
+      "killCount": 980,
+      "missionsCompleted": 430
+    }
+  ]
+}
+
+
+### Create user: Tomioka
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+  "username": "giyuTomioka",
+  "password": "hashira123",
+  "profile": [
+    {
+      "name": "Giyu Tomioka",
+      "rank": "Hashira - Elite",
+      "experience": 65000,
+      "breathingStyle": "Water Breathing",
+      "killCount": 950,
+      "missionsCompleted": 90,
+      "status": "Active"
+    }
+  ]
+}
+
+### Create user: Sanemi
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+  "username": "sanemi",
+  "password": "hashira123",
+  "profile": [
+    {
+      "name": "Sanemi Shinazugawa",
+      "rank": "Hashira - Elite",
+      "experience": 6659,
+      "breathingStyle": "Wind Breathing",
+      "killCount": 943,
+      "missionsCompleted": 102,
+      "status": "Active"
+    }
+  ]
+}
+
+### Login as corpsLeader
+POST http://localhost:10000/auth/login
+Content-Type: application/json
+
+{
+  "username": "corpsLeader",
+  "password": "admin123"
+}
+
+### Login as himejima
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "himejima",
+  "password": "hashira1"
+}
+
+### Get all users (public route — no authentication needed)
+GET http://localhost:10000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiY29ycHNMZWFkZXIiLCJyb2xlIjoiYWRtaW4iLCJwcm9maWxlIjpbeyJuYW1lIjoiS2FnYXlhIFVidXlhc2hpa2kiLCJyYW5rIjoiQ29ycHMgTGVhZGVyIiwiZXhwZXJpZW5jZSI6MTAwMDAwMCwiYnJlYXRoaW5nU3R5bGUiOiJOb25lIiwia2lsbENvdW50IjowLCJtaXNzaW9uc0NvbXBsZXRlZCI6MCwic3RhdHVzIjoiQWN0aXZlIiwiX2lkIjoiNjhiZTg5ZWVkM2RmOGYyYzgxODY4ZTBkIn1dLCJpYXQiOjE3NTczMTgyNjF9.oOyRPuCxNoQKyGv_4JBbdNam7ibozEB59xHcOTvbjuY
+Content-Type: application/json
+
+### Get user by userID (public route)
+GET http://localhost:3000/users/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiY29ycHNMZWFkZXIiLCJyb2xlIjoiYWRtaW4iLCJwcm9maWxlIjpbeyJuYW1lIjoiS2FnYXlhIFVidXlhc2hpa2kiLCJyYW5rIjoiQ29ycHMgTGVhZGVyIiwiZXhwZXJpZW5jZSI6NTAwMCwiYnJlYXRoaW5nU3R5bGUiOiJOb25lIiwia2lsbENvdW50IjoxMDAwLCJtaXNzaW9uc0NvbXBsZXRlZCI6MTAwLCJzdGF0dXMiOiJBY3RpdmUiLCJfaWQiOiI2OGJkNzVhOGVmMTk5ZmE5M2NiNjZjZDQifV0sImlhdCI6MTc1NzI0ODg1MH0.QfResx8cgUQiYomagufW9spkSlsDeC1BkHE0164aNeY
+
+
+### Get profile by userID (public route)
+GET http://localhost:3000/users/2/profile
+
+
+### Update profile by userID (protected route — requires user or admin role)
+PATCH http://localhost:3000/users/3/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsInVzZXJuYW1lIjoiY29ycHNMZWFkZXIiLCJyb2xlIjoiYWRtaW4iLCJwcm9maWxlIjpbeyJuYW1lIjoiS2FnYXlhIFVidXlhc2hpa2kiLCJyYW5rIjoiQ29ycHMgTGVhZGVyIiwiZXhwZXJpZW5jZSI6NTAwMCwiYnJlYXRoaW5nU3R5bGUiOiJOb25lIiwia2lsbENvdW50IjoxMDAwLCJtaXNzaW9uc0NvbXBsZXRlZCI6MTAwLCJzdGF0dXMiOiJBY3RpdmUiLCJfaWQiOiI2OGJkYjkzODEzZTdkMjI4ZDJkYjQwNTcifV0sImlhdCI6MTc1NzI2NDM0M30.sYQyEuNr-qMSuVhiTmiyRSAdnJM8uzUq94ls5U3IJd4
+Content-Type: application/json
+
+{
+  "experience": 7812
+}
+
+
+### Delete user by userID (protected route — admin only)
+DELETE http://localhost:3000/users/:userID
+Authorization: Bearer <your_jwt_token>
+
+// Only admins can delete users, must send valid admin token
+
+---
+
+### Get all user's missions by userID
+GET http://localhost:3000/users/2/missions
+Content-Type: application/json
